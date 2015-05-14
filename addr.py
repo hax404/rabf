@@ -39,8 +39,6 @@ def gen_addr(addr,a,b):
 
   print ("Generated Checksum:", "".join((csuma,csumb)))
   print ("Generated Address:", "".join((euser,"".join((csuma,csumb)),eitext,"@",edomain)))
-  print (a)
-  print (b)
 
 def main():
   if args.verify:
