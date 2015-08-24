@@ -14,7 +14,7 @@ def verify_addr(addr,a,b):
   edomain = addr.split("@")[1]
   ecsum = addr[2:4]
   eitext = addr.split("@")[0][4:]
-  genitext = ''.join((euser, eitext))
+  genitext = ''.join((euser, eitext, edomain))
   gencsum = hashlib.sha512(genitext.encode('utf-8')).hexdigest()
   posa = int(a)-1
   posb = int(b)-1
@@ -30,7 +30,7 @@ def gen_addr(addr,a,b):
   euser = addr[0:2]
   edomain = addr.split("@")[1]
   eitext = addr.split("@")[0][2:]
-  genitext = ''.join((euser, eitext))
+  genitext = ''.join((euser, eitext, edomain))
   posa = int(a)-1
   posb = int(b)-1
   gencsum = hashlib.sha512(genitext.encode('utf-8')).hexdigest()

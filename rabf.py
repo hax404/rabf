@@ -95,14 +95,15 @@ class myMilter(Milter.Base):
     euser = addr[0:2]
     ecsum = addr[2:4]
     eitext = addr[4:]
-    genitext = ''.join((euser, eitext))
+    edomain = parse_addr(to)[1]
+    genitext = ''.join((euser, eitext, edomain))
     gencsum = hashlib.sha512(genitext.encode('utf-8')).hexdigest()
     posa = int(a)-1
     posb = int(b)-1
     csuma = gencsum[posa:(posa+1)]
     csumb = gencsum[posb:(posb+1)]
 
-    self.log(addr, euser, ecsum, eitext, genitext, gencsum, posa, posb, csuma, csumb)
+    self.log(addr, euser, ecsum, eitext, edomain, genitext, gencsum, posa, posb, csuma, csumb)
 
     if(ecsum != "".join((csuma,csumb))):
       self.log("Computer sagt nein.")
